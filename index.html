@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>櫻旅 · SAKURA TRAVEL | 全球旅遊指南</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sakura-100: #FFF5F7;
+  --sakura-200: #FFE0E8;
+  --sakura-300: #FFB8CC;
+  --sakura-400: #FF8FAE;
+  --sakura-500: #E8668A;
+  --sakura-600: #C4476B;
+  --ink-900: #1A1218;
+  --ink-800: #2D2028;
+  --ink-700: #4A3644;
+  --ink-600: #6B5060;
+  --ink-500: #8A6E7E;
+  --ink-400: #A8919D;
+  --ink-300: #C5B4BD;
+  --warm-cream: #FDF8F4;
+  --warm-beige: #F5EDE6;
+  --gold-accent: #C4956A;
+  --spring-green: #7BA68A;
+  --sky-blue: #87AECC;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  color: var(--ink-800);
+  background: var(--warm-cream);
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(253, 248, 244, 0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 184, 204, 0.3);
+  transition: all 0.4s ease;
+}
+nav.scrolled { background: rgba(253, 248, 244, 0.95); box-shadow: 0 2px 30px rgba(26, 18, 24, 0.08); }
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.nav-logo {
+  font-family: 'Noto Serif TC', serif; font-weight: 700; font-size: 1.1rem;
+  color: var(--ink-800); text-decoration: none; letter-spacing: 0.05em;
+}
+.nav-logo span { color: var(--sakura-500); }
+.nav-tagline {
+  font-size: 0.75rem; color: var(--ink-400); letter-spacing: 0.08em;
+  font-style: italic; font-family: 'Cormorant Garamond', serif;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+  background: linear-gradient(165deg, var(--sakura-100) 0%, var(--warm-cream) 50%, #EEF3F8 100%);
+}
+.hero::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 15% 85%, rgba(255, 184, 204, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(135, 174, 204, 0.25) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(196, 149, 106, 0.08) 0%, transparent 70%);
+}
+
+.petals-container { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.petal {
+  position: absolute; opacity: 0;
+  background: var(--sakura-300);
+  border-radius: 50% 0 50% 50%;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0% { opacity: 0; transform: translateY(-10vh) rotate(0deg) translateX(0); }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.4; }
+  100% { opacity: 0; transform: translateY(105vh) rotate(720deg) translateX(60px); }
+}
+
+.hero-content {
+  position: relative; z-index: 2; text-align: center; padding: 120px 24px 80px;
+  max-width: 900px;
+}
+.hero-eyebrow {
+  font-size: 0.72rem; letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--sakura-600); font-weight: 500; margin-bottom: 28px;
+  display: inline-flex; align-items: center; gap: 14px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; width: 48px; height: 1px; background: var(--sakura-400);
+}
+.hero-title {
+  font-family: 'Noto Serif TC', serif; font-weight: 900;
+  font-size: clamp(3rem, 8vw, 6rem); line-height: 1.1;
+  color: var(--ink-900); margin-bottom: 12px; letter-spacing: -0.01em;
+}
+.hero-title-en {
+  font-family: 'Playfair Display', serif; font-weight: 400; font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2rem); color: var(--sakura-500);
+  display: block; margin-bottom: 28px; letter-spacing: 0.06em;
+}
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+  color: var(--ink-500); font-style: italic; max-width: 560px; margin: 0 auto 48px;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 15px 40px; border: 1.5px solid var(--sakura-500);
+  color: var(--sakura-600); text-decoration: none; font-size: 0.82rem;
+  letter-spacing: 0.14em; font-weight: 500; transition: all 0.4s;
+  background: transparent; cursor: pointer;
+}
+.hero-cta:hover {
+  background: var(--sakura-500); color: #fff;
+  transform: translateY(-2px); box-shadow: 0 10px 36px rgba(232, 102, 138, 0.28);
+}
+.hero-scroll {
+  position: absolute; bottom: 44px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  color: var(--ink-400); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.scroll-arrow { animation: bounce 2s ease infinite; }
+@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(7px); } }
+
+/* ===== STATS BAR ===== */
+.stats-bar {
+  background: var(--ink-900); color: #fff; padding: 44px 0;
+}
+.stats-grid {
+  max-width: 1200px; margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; text-align: center;
+}
+.stat-item { padding: 16px 12px; position: relative; }
+.stat-item:not(:last-child)::after {
+  content: ''; position: absolute; right: 0; top: 15%; height: 70%;
+  width: 1px; background: rgba(255,255,255,0.12);
+}
+.stat-num {
+  font-family: 'Playfair Display', serif; font-size: 2.2rem;
+  color: var(--sakura-300); line-height: 1; margin-bottom: 6px;
+}
+.stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.55); letter-spacing: 0.1em; }
+
+/* ===== EXPLORE SECTION ===== */
+.section { padding: 100px 0; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+.section-header { text-align: center; margin-bottom: 72px; }
+.section-eyebrow {
+  font-family: 'Playfair Display', serif; font-size: 0.72rem;
+  color: var(--sakura-400); letter-spacing: 0.28em; text-transform: uppercase;
+  margin-bottom: 18px; display: block;
+}
+.section-title {
+  font-family: 'Noto Serif TC', serif; font-weight: 700;
+  font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.3;
+  color: var(--ink-900); margin-bottom: 16px;
+}
+.section-divider { width: 56px; height: 2px; background: var(--sakura-400); margin: 20px auto; }
+.section-desc {
+  max-width: 580px; margin: 0 auto; font-size: 0.92rem;
+  color: var(--ink-500); line-height: 2;
+}
+
+/* ===== SEASON FILTER ===== */
+.season-filter {
+  display: flex; justify-content: center; gap: 12px;
+  margin-bottom: 56px; flex-wrap: wrap;
+}
+.season-btn {
+  padding: 9px 28px; border: 1.5px solid var(--ink-300);
+  background: transparent; cursor: pointer; font-size: 0.8rem;
+  letter-spacing: 0.1em; color: var(--ink-600); transition: all 0.3s;
+  font-family: 'Noto Sans TC', sans-serif; border-radius: 0;
+}
+.season-btn.active, .season-btn:hover {
+  border-color: var(--sakura-500); color: var(--sakura-600);
+  background: var(--sakura-100);
+}
+.season-btn.spring.active { border-color: var(--sakura-500); background: var(--sakura-100); color: var(--sakura-600); }
+.season-btn.summer.active { border-color: #5B9E6A; background: #F0F7F2; color: #3D7A4E; }
+.season-btn.autumn.active { border-color: #C4712A; background: #FBF3EB; color: #9E4E10; }
+.season-btn.winter.active { border-color: #4A7EA8; background: #EFF5FB; color: #2C5F82; }
+
+/* ===== DESTINATION GRID ===== */
+.destinations-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+}
+@media (max-width: 900px) { .destinations-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 580px) { .destinations-grid { grid-template-columns: 1fr; } }
+
+.dest-card {
+  background: #fff; overflow: hidden; transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer; text-decoration: none; display: block; color: inherit;
+}
+.dest-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(26,18,24,0.12); }
+
+.dest-card-visual {
+  height: 220px; position: relative; overflow: hidden;
+  background: linear-gradient(135deg, var(--sakura-200), var(--warm-beige));
+  display: flex; align-items: center; justify-content: center;
+}
+.dest-card-visual .season-badge {
+  position: absolute; top: 16px; left: 16px;
+  padding: 5px 14px; font-size: 0.68rem; letter-spacing: 0.15em;
+  text-transform: uppercase; font-weight: 500;
+}
+.season-spring .dest-card-visual { background: linear-gradient(135deg, #FFE0E8 0%, #FFF0F5 50%, #FFD6E7 100%); }
+.season-spring .season-badge { background: rgba(232,102,138,0.15); color: var(--sakura-600); }
+.season-summer .dest-card-visual { background: linear-gradient(135deg, #D4EDD9 0%, #F0F9F2 50%, #BEE3C4 100%); }
+.season-summer .season-badge { background: rgba(91,158,106,0.15); color: #3D7A4E; }
+.season-autumn .dest-card-visual { background: linear-gradient(135deg, #F5DFC0 0%, #FBF3EB 50%, #F0C99A 100%); }
+.season-autumn .season-badge { background: rgba(196,113,42,0.15); color: #9E4E10; }
+.season-winter .dest-card-visual { background: linear-gradient(135deg, #C8DDF0 0%, #EFF5FB 50%, #AAC8E4 100%); }
+.season-winter .season-badge { background: rgba(74,126,168,0.15); color: #2C5F82; }
+
+.dest-card-visual-inner {
+  font-size: 5rem; line-height: 1; filter: drop-shadow(0 4px 20px rgba(0,0,0,0.08));
+  transition: transform 0.6s ease;
+}
+.dest-card:hover .dest-card-visual-inner { transform: scale(1.08) rotate(-3deg); }
+
+.dest-card-body { padding: 24px 26px 28px; }
+.dest-country {
+  font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-400); margin-bottom: 8px; font-weight: 500;
+}
+.dest-title {
+  font-family: 'Noto Serif TC', serif; font-size: 1.2rem; font-weight: 700;
+  color: var(--ink-900); margin-bottom: 6px; line-height: 1.4;
+}
+.dest-subtitle {
+  font-family: 'Cormorant Garamond', serif; font-size: 0.95rem;
+  color: var(--ink-500); font-style: italic; margin-bottom: 14px;
+}
+.dest-cities {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px;
+}
+.dest-city-tag {
+  font-size: 0.7rem; padding: 3px 10px;
+  background: var(--warm-beige); color: var(--ink-600);
+  letter-spacing: 0.06em;
+}
+.dest-link {
+  font-size: 0.75rem; letter-spacing: 0.12em; color: var(--sakura-500);
+  display: inline-flex; align-items: center; gap: 6px;
+  font-weight: 500; transition: gap 0.3s;
+}
+.dest-card:hover .dest-link { gap: 10px; }
+
+/* ===== COMING SOON CARD ===== */
+.dest-card.coming-soon { opacity: 0.55; cursor: default; }
+.dest-card.coming-soon:hover { transform: none; box-shadow: none; }
+.coming-soon-label {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-500); background: rgba(253,248,244,0.9);
+  padding: 8px 18px; white-space: nowrap;
+}
+
+/* ===== REGION SECTION ===== */
+.section-alt { background: #fff; }
+
+.region-tabs {
+  display: flex; gap: 0; border-bottom: 1.5px solid var(--ink-300);
+  margin-bottom: 56px; overflow-x: auto;
+}
+.region-tab {
+  padding: 14px 32px; font-size: 0.82rem; letter-spacing: 0.12em;
+  color: var(--ink-500); cursor: pointer; white-space: nowrap;
+  border-bottom: 2.5px solid transparent; margin-bottom: -1.5px;
+  transition: all 0.3s; background: none; border-top: none;
+  border-left: none; border-right: none; font-family: 'Noto Sans TC', sans-serif;
+}
+.region-tab.active { color: var(--sakura-600); border-bottom-color: var(--sakura-500); }
+.region-tab:hover { color: var(--sakura-500); }
+
+/* ===== MANIFESTO SECTION ===== */
+.section-manifesto {
+  background: var(--ink-900); color: #fff;
+  padding: 100px 0; text-align: center;
+}
+.manifesto-text {
+  font-family: 'Noto Serif TC', serif; font-weight: 700;
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem); line-height: 1.7;
+  max-width: 720px; margin: 0 auto 40px;
+  color: #fff;
+}
+.manifesto-text em {
+  font-style: normal; color: var(--sakura-300);
+}
+.manifesto-sub {
+  font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+  color: rgba(255,255,255,0.45); font-style: italic; max-width: 480px; margin: 0 auto;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--ink-900); color: rgba(255,255,255,0.4);
+  padding: 48px 0; text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer-logo {
+  font-family: 'Noto Serif TC', serif; font-weight: 700;
+  font-size: 1.1rem; color: rgba(255,255,255,0.7);
+  letter-spacing: 0.06em; margin-bottom: 16px;
+}
+footer p { font-size: 0.78rem; line-height: 2; }
+
+/* ===== ANIMATIONS ===== */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 768px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2)::after { display: none; }
+  .region-tabs { gap: 0; }
+  .region-tab { padding: 12px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">櫻旅<span>.</span> SAKURA TRAVEL</a>
+    <span class="nav-tagline">用四季的色彩，紀錄世界的美好</span>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="petals-container" id="petals"></div>
+  <div class="hero-content fade-in">
+    <div class="hero-eyebrow">GLOBAL TRAVEL GUIDE</div>
+    <h1 class="hero-title">探索世界之美</h1>
+    <span class="hero-title-en">Discover the World's Beauty</span>
+    <p class="hero-subtitle">
+      從亞洲的春櫻秋楓，到歐洲的夏日花海冬日雪景<br>
+      用四季為刻度，記錄每一段值得珍藏的旅途
+    </p>
+    <a href="#explore" class="hero-cta">開始探索 →</a>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-arrow">↓</span>
+    <span>SCROLL</span>
+  </div>
+</section>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-num">1</div>
+      <div class="stat-label">目的地國家</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3</div>
+      <div class="stat-label">城市指南</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">4</div>
+      <div class="stat-label">涵蓋季節</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">旅行靈感</div>
+    </div>
+  </div>
+</div>
+
+<!-- Explore Section -->
+<section class="section" id="explore">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">Destinations</span>
+      <h2 class="section-title">選擇你的旅行目的地</h2>
+      <div class="section-divider"></div>
+      <p class="section-desc">每個國家、每個季節，都有獨一無二的故事在等待。</p>
+    </div>
+
+    <div class="season-filter fade-in">
+      <button class="season-btn active" data-season="all">全部季節</button>
+      <button class="season-btn spring" data-season="spring">春 · Spring</button>
+      <button class="season-btn summer" data-season="summer">夏 · Summer</button>
+      <button class="season-btn autumn" data-season="autumn">秋 · Autumn</button>
+      <button class="season-btn winter" data-season="winter">冬 · Winter</button>
+    </div>
+
+    <div class="destinations-grid fade-in">
+
+      <!-- Korea · Spring · Cherry Blossom -->
+      <a href="/korea/spring/cherry-blossom.html" class="dest-card season-spring">
+        <div class="dest-card-visual">
+          <span class="season-badge">Spring · 春</span>
+          <div class="dest-card-visual-inner">🌸</div>
+        </div>
+        <div class="dest-card-body">
+          <div class="dest-country">SOUTH KOREA · 韓國</div>
+          <div class="dest-title">韓國春天櫻花之旅</div>
+          <div class="dest-subtitle">Cherry Blossom Journey</div>
+          <div class="dest-cities">
+            <span class="dest-city-tag">首爾</span>
+            <span class="dest-city-tag">釜山</span>
+            <span class="dest-city-tag">濟州島</span>
+          </div>
+          <span class="dest-link">閱讀完整指南 →</span>
+        </div>
+      </a>
+
+      <!-- Korea · Summer · Coming Soon -->
+      <div class="dest-card season-summer coming-soon">
+        <div class="dest-card-visual">
+          <span class="season-badge">Summer · 夏</span>
+          <div class="dest-card-visual-inner">🌊</div>
+          <div class="coming-soon-label">COMING SOON</div>
+        </div>
+        <div class="dest-card-body">
+          <div class="dest-country">SOUTH KOREA · 韓國</div>
+          <div class="dest-title">韓國夏日海灘</div>
+          <div class="dest-subtitle">Summer Beaches & Festivals</div>
+          <div class="dest-cities">
+            <span class="dest-city-tag">釜山</span>
+            <span class="dest-city-tag">江陵</span>
+            <span class="dest-city-tag">濟州島</span>
+          </div>
+          <span class="dest-link">敬請期待</span>
+        </div>
+      </div>
+
+      <!-- Korea · Autumn · Coming Soon -->
+      <div class="dest-card season-autumn coming-soon">
+        <div class="dest-card-visual">
+          <span class="season-badge">Autumn · 秋</span>
+          <div class="dest-card-visual-inner">🍁</div>
+          <div class="coming-soon-label">COMING SOON</div>
+        </div>
+        <div class="dest-card-body">
+          <div class="dest-country">SOUTH KOREA · 韓國</div>
+          <div class="dest-title">韓國秋天楓葉</div>
+          <div class="dest-subtitle">Autumn Foliage Journey</div>
+          <div class="dest-cities">
+            <span class="dest-city-tag">首爾</span>
+            <span class="dest-city-tag">內藏山</span>
+            <span class="dest-city-tag">雪嶽山</span>
+          </div>
+          <span class="dest-link">敬請期待</span>
+        </div>
+      </div>
+
+      <!-- Korea · Winter · Coming Soon -->
+      <div class="dest-card season-winter coming-soon">
+        <div class="dest-card-visual">
+          <span class="season-badge">Winter · 冬</span>
+          <div class="dest-card-visual-inner">❄️</div>
+          <div class="coming-soon-label">COMING SOON</div>
+        </div>
+        <div class="dest-card-body">
+          <div class="dest-country">SOUTH KOREA · 韓國</div>
+          <div class="dest-title">韓國冬日雪景</div>
+          <div class="dest-subtitle">Winter Snow & Hot Springs</div>
+          <div class="dest-cities">
+            <span class="dest-city-tag">首爾</span>
+            <span class="dest-city-tag">平昌</span>
+            <span class="dest-city-tag">江原道</span>
+          </div>
+          <span class="dest-link">敬請期待</span>
+        </div>
+      </div>
+
+      <!-- Japan · Spring · Coming Soon -->
+      <div class="dest-card season-spring coming-soon">
+        <div class="dest-card-visual">
+          <span class="season-badge">Spring · 春</span>
+          <div class="dest-card-visual-inner">⛩️</div>
+          <div class="coming-soon-label">COMING SOON</div>
+        </div>
+        <div class="dest-card-body">
+          <div class="dest-country">JAPAN · 日本</div>
+          <div class="dest-title">日本春天賞花</div>
+          <div class="dest-subtitle">Sakura & Spring Gardens</div>
+          <div class="dest-cities">
+            <span class="dest-city-tag">東京</span>
+            <span class="dest-city-tag">京都</span>
+            <span class="dest-city-tag">大阪</span>
+          </div>
+          <span class="dest-link">敬請期待</span>
+        </div>
+      </div>
+
+      <!-- Japan · Autumn · Coming Soon -->
+      <div class="dest-card season-autumn coming-soon">
+        <div class="dest-card-visual">
+          <span class="season-badge">Autumn · 秋</span>
+          <div class="dest-card-visual-inner">🗻</div>
+          <div class="coming-soon-label">COMING SOON</div>
+        </div>
+        <div class="dest-card-body">
+          <div class="dest-country">JAPAN · 日本</div>
+          <div class="dest-title">日本秋葉物語</div>
+          <div class="dest-subtitle">Autumn Koyo Season</div>
+          <div class="dest-cities">
+            <span class="dest-city-tag">京都</span>
+            <span class="dest-city-tag">日光</span>
+            <span class="dest-city-tag">奈良</span>
+          </div>
+          <span class="dest-link">敬請期待</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Manifesto -->
+<section class="section-manifesto">
+  <div class="container">
+    <p class="manifesto-text fade-in">
+      旅行不只是移動，<br>
+      而是讓<em>四季的節奏</em>成為你的語言——<br>
+      讓每一片花瓣、每一片落葉，<br>
+      都成為<em>記憶的刻度</em>。
+    </p>
+    <p class="manifesto-sub fade-in">
+      Travel is not just movement, but letting the rhythm of seasons become your language.
+    </p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-logo">櫻旅. SAKURA TRAVEL</div>
+    <p>
+      全球旅遊內容平台 · 用四季的色彩，紀錄世界的美好<br>
+      © 2026 Sakura Travel. Content curated with ♥
+    </p>
+  </div>
+</footer>
+
+<script>
+// Falling petals
+const petalsContainer = document.getElementById('petals');
+function createPetal() {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+  petal.style.left = Math.random() * 100 + '%';
+  petal.style.animationDuration = (Math.random() * 8 + 10) + 's';
+  petal.style.animationDelay = Math.random() * 12 + 's';
+  const size = Math.random() * 9 + 5;
+  petal.style.width = size + 'px';
+  petal.style.height = size + 'px';
+  const hue = Math.random() > 0.5 ? 'var(--sakura-300)' : 'var(--sakura-200)';
+  petal.style.background = hue;
+  petalsContainer.appendChild(petal);
+  setTimeout(() => petal.remove(), 22000);
+}
+for (let i = 0; i < 20; i++) setTimeout(createPetal, i * 500);
+setInterval(createPetal, 1000);
+
+// Nav scroll
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Season filter
+const seasonBtns = document.querySelectorAll('.season-btn');
+const destCards = document.querySelectorAll('.dest-card');
+seasonBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    seasonBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const season = btn.dataset.season;
+    destCards.forEach(card => {
+      if (season === 'all' || card.classList.contains('season-' + season)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
