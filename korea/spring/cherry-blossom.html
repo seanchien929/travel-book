@@ -421,6 +421,30 @@ footer p { font-size: 0.78rem; line-height: 2; }
 .city-banner-img img {
   width: 100%; height: auto; display: block;
 }
+
+/* ===== TOUR BANNER ===== */
+.tour-banner {
+  padding: 60px 0;
+  background: linear-gradient(180deg, var(--warm-cream) 0%, var(--sakura-100) 50%, var(--warm-cream) 100%);
+  text-align: center;
+}
+.tour-banner-label {
+  font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--sakura-500); font-weight: 500; margin-bottom: 16px;
+}
+.tour-banner-title {
+  font-family: 'Noto Serif TC', serif; font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  font-weight: 700; color: var(--ink-800); margin-bottom: 28px;
+}
+.tour-banner-img {
+  width: 100%; max-width: 1100px; margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(26, 18, 24, 0.08), 0 4px 12px rgba(232, 102, 138, 0.08);
+  overflow: hidden;
+}
+.tour-banner-img img {
+  width: 100%; height: auto; display: block;
+}
 .city-banner-caption {
   margin-top: 20px; font-size: 0.78rem; color: var(--ink-400);
   font-style: italic; letter-spacing: 0.05em;
@@ -709,6 +733,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="spot-tag">🏛️ UNESCO · 📍 地鐵3號線安國站</span>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seoul Recommended Tours -->
+  <div class="tour-banner fade-in">
+    <div class="container">
+      <div class="tour-banner-label">RECOMMENDED TOURS · 推薦行程</div>
+      <h3 class="tour-banner-title">首爾櫻花季精選一日遊</h3>
+      <div class="tour-banner-img">
+        <picture>
+          <source srcset="images/seoul-tour-banner-640.avif 640w, images/seoul-tour-banner-1100.avif 1100w" sizes="(max-width: 768px) 100vw, 1100px" type="image/avif">
+          <img srcset="images/seoul-tour-banner-640.jpg 640w, images/seoul-tour-banner-1100.jpg 1100w" sizes="(max-width: 768px) 100vw, 1100px" src="images/seoul-tour-banner-1100.jpg" alt="首爾櫻花季推薦行程 — 南怡島、小法國村、草泥馬世界一日遊" width="1100" height="544" loading="lazy">
+        </picture>
       </div>
     </div>
   </div>
