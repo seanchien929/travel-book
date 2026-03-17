@@ -442,6 +442,13 @@ footer p { font-size: 0.78rem; line-height: 2; }
   box-shadow: 0 12px 40px rgba(26, 18, 24, 0.08), 0 4px 12px rgba(232, 102, 138, 0.08);
   overflow: hidden;
 }
+.tour-banner-img {
+  display: block; text-decoration: none; transition: transform 0.3s, box-shadow 0.3s;
+}
+.tour-banner-img:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(26, 18, 24, 0.15), 0 8px 20px rgba(232, 102, 138, 0.12);
+}
 .tour-banner-img img {
   width: 100%; height: auto; display: block;
 }
@@ -742,12 +749,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="container">
       <div class="tour-banner-label">RECOMMENDED TOURS · 推薦行程</div>
       <h3 class="tour-banner-title">首爾櫻花季精選一日遊</h3>
-      <div class="tour-banner-img">
+      <a href="https://www.kkday.com/zh-tw/promo/gyeongnam_spring?cid=22785" target="_blank" rel="noopener" class="tour-banner-img">
         <picture>
           <source srcset="images/seoul-tour-banner-640.avif 640w, images/seoul-tour-banner-1100.avif 1100w" sizes="(max-width: 768px) 100vw, 1100px" type="image/avif">
           <img srcset="images/seoul-tour-banner-640.jpg 640w, images/seoul-tour-banner-1100.jpg 1100w" sizes="(max-width: 768px) 100vw, 1100px" src="images/seoul-tour-banner-1100.jpg" alt="首爾櫻花季推薦行程 — 南怡島、小法國村、草泥馬世界一日遊" width="1100" height="544" loading="lazy">
         </picture>
-      </div>
+      </a>
     </div>
   </div>
 
