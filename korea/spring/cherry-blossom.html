@@ -457,6 +457,17 @@ footer p { font-size: 0.78rem; line-height: 2; }
   font-style: italic; letter-spacing: 0.05em;
 }
 
+/* ===== CONTENT-VISIBILITY: skip layout for off-screen sections ===== */
+.spots-section,
+.top10-section,
+.tour-banner,
+#busan, #jeju,
+.tips-section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 900px) {
   .nav-links {
@@ -1474,8 +1485,8 @@ const startPetals = () => {
     container.appendChild(petal);
     setTimeout(() => petal.remove(), 18000);
   }
-  for (let i = 0; i < 25; i++) setTimeout(createPetal, i * 400);
-  setInterval(createPetal, 800);
+  for (let i = 0; i < 12; i++) setTimeout(createPetal, i * 600);
+  setInterval(createPetal, 1500);
 };
 'requestIdleCallback' in window
   ? requestIdleCallback(startPetals, { timeout: 2000 })
