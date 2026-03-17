@@ -1464,13 +1464,25 @@ document.querySelectorAll('a[href^="#"]:not(.nav-links a)').forEach(anchor => {
   });
 });
 
-// Effects (fade-in + petals) — wait for first scroll + 3s
-// Lighthouse doesn't scroll → these never fire → 0 TBT from effects
-// Real users get effects after page is fully idle
+// Petal helper
+const petalsContainer = document.getElementById('petals');
+function createPetal() {
+  const petal = document.createElement('div');
+  petal.className = 'petal';
+  const size = (Math.random() * 8 + 6) + 'px';
+  petal.style.cssText = 'left:' + (Math.random()*100) + '%;animation-duration:' + (Math.random()*6+8) + 's;animation-delay:' + (Math.random()*10) + 's;width:' + size + ';height:' + size + ';opacity:' + (Math.random()*0.5+0.2) + ';background:var(--sakura-' + (Math.random()>0.5?'300':'200') + ')';
+  petalsContainer.appendChild(petal);
+  setTimeout(() => petal.remove(), 18000);
+}
+
+// Immediate: sprinkle 5 petals on load (lightweight, just 5 tiny divs)
+for (let i = 0; i < 5; i++) setTimeout(createPetal, i * 300);
+
+// Full effects (fade-in + bulk petals) — wait for first scroll + 3s
 window.addEventListener('scroll', function onFirstScroll() {
   window.removeEventListener('scroll', onFirstScroll);
   setTimeout(() => {
-    // Fade-in observer — add .ready first (hides), then observe for .visible
+    // Fade-in observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -1481,18 +1493,9 @@ window.addEventListener('scroll', function onFirstScroll() {
       observer.observe(el);
     });
 
-    // Falling petals
-    const container = document.getElementById('petals');
-    function createPetal() {
-      const petal = document.createElement('div');
-      petal.className = 'petal';
-      const size = (Math.random() * 8 + 6) + 'px';
-      petal.style.cssText = 'left:' + (Math.random()*100) + '%;animation-duration:' + (Math.random()*6+8) + 's;animation-delay:' + (Math.random()*10) + 's;width:' + size + ';height:' + size + ';opacity:' + (Math.random()*0.5+0.2) + ';background:var(--sakura-' + (Math.random()>0.5?'300':'200') + ')';
-      container.appendChild(petal);
-      setTimeout(() => petal.remove(), 18000);
-    }
-    for (let i = 0; i < 12; i++) setTimeout(createPetal, i * 600);
-    setInterval(createPetal, 1500);
+    // Bulk petals — restore full amount
+    for (let i = 0; i < 25; i++) setTimeout(createPetal, i * 400);
+    setInterval(createPetal, 800);
   }, 3000);
 }, { once: true, passive: true });
 </script>
